@@ -1,0 +1,107 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/off_white">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+            android:id="@+id/search_toolbar"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+
+
+
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <View
+            android:background="@color/off_white_red"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+
+        <FrameLayout
+            android:background="@drawable/edtext_background"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:padding="4dp"
+                android:id="@+id/search_employee"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                android:gravity="left|center"
+                android:hint="Search Produts"
+              />
+
+
+
+        </FrameLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_marginTop="-4dp"
+            android:layout_marginBottom="-4dp"
+            android:indeterminate="true"
+            android:progressTint="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal" />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

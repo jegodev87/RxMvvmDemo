@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.employee_list);
 
-        //initialising recyclerview
 
         setupReyclerView();
         setupToolbar();

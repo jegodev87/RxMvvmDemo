@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.mvvm.boilerplate.dmo.R;
-import com.mvvm.boilerplate.dmo.api.ServiceGenerator;
 import com.mvvm.boilerplate.dmo.data.model.Employee;
 import com.mvvm.boilerplate.dmo.ui.details.EmployeeDetailsActivity;
 
@@ -92,7 +91,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
 
         private void setImage(String url) {
-            Glide.with(context).load( url).fitCenter().into(employeeImage);
+            Glide.with(context).load(url).circleCrop().into(employeeImage);
         }
 
     }

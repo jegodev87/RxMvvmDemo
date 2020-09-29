@@ -13,12 +13,13 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_frame"
+        app:cardBackgroundColor="@color/white"
         android:focusable="true"
         app:contentPadding="4dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardElevation="3dp"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="6dp"
         android:layout_gravity="center"
         >
 
@@ -34,29 +35,32 @@
 
 
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/employee_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-
-
             <TextView
+                android:gravity="center"
+                android:textColor="@color/off_black"
                 android:layout_marginTop="8dp"
                 android:padding="4dp"
+                android:textStyle="bold"
                 android:id="@+id/employee_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
 
+
             <TextView
+                android:gravity="center"
+                android:textColor="@color/off_black"
                 android:padding="4dp"
+                android:textStyle="bold"
                 android:id="@+id/employee_company_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
 
-
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/employee_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
 
 
         </LinearLayout>

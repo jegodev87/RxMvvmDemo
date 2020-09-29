@@ -2,26 +2,44 @@ package com.mvvm.boilerplate.dmo.data.repository;
 
 import android.app.Application;
 
-import androidx.lifecycle.LiveData;
-
+import com.mvvm.boilerplate.dmo.api.ApiService;
+import com.mvvm.boilerplate.dmo.api.ServiceGenerator;
 import com.mvvm.boilerplate.dmo.data.local.AppDatabase;
 import com.mvvm.boilerplate.dmo.data.local.dao.EmployeeDao;
 import com.mvvm.boilerplate.dmo.data.model.Employee;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 public class EmployeeRepository {
 
     private EmployeeDao employeeDao;
-    private LiveData<List<Employee>> employeesList;
+    private ApiService backend;
 
-   public EmployeeRepository(Application application) {
+    public EmployeeRepository(Application application) {
         AppDatabase db = AppDatabase.getDbInstance(application);
         employeeDao = db.employeeDao();
-        employeesList = employeeDao.getAllEmployees();
+        backend = ServiceGenerator.createService(ApiService.class);
     }
 
-   public   LiveData<List<Employee>> getAllEmployees() {
-        return employeesList;
+
+    //first checking local db for data if there is data returning data
+    //if there is no data then calling the api call
+    //after get result saving to db
+    public Single<List<Employee>> fetchEmployees() {
+        return employeeDao.g()
+                .flatMap(employees -> {
+                    if (employees.isEmpty()) {
+                        return backend.getEmployees().map(remoteEmployees -> {
+                            employeeDao.insertAllEmployees(remoteEmployees);
+                            return remoteEmployees;
+                        });
+                    } else {
+                        return Single.just(employees);
+                    }
+                });
+
     }
+
 }

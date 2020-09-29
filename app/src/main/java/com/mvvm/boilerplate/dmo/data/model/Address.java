@@ -64,4 +64,15 @@ public class Address implements Serializable {
     public void setGeo(Geo geo) {
         this.geo = geo;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", suite='" + suite + '\'' +
+                ", city='" + city + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", geo=" + geo +
+                '}';
+    }
 }

@@ -1,5 +1,13 @@
 package com.mvvm.boilerplate.dmo.ui.home;
 
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -7,13 +15,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 
 import com.mvvm.boilerplate.dmo.R;
 import com.mvvm.boilerplate.dmo.data.model.Employee;
@@ -24,6 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
     private EmployeeAdapter employeeAdapter;
     private final List<Employee> allEmployeesList= new ArrayList<>();
     private Toolbar toolbar;
@@ -42,25 +44,42 @@ public class MainActivity extends AppCompatActivity {
         setUpEditTextSearch();
 
         viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-
-
+        viewModel.getEmployee();
         observeEmployee();
+
+
     }
 
 
     private void observeEmployee(){
-        viewModel.getCachedEmployee().observe(this, new Observer<List<Employee>>() {
+        viewModel.getEmployeeLiveData().observe(this, new Observer<List<Employee>>() {
             @Override
             public void onChanged(List<Employee> employees) {
                 if (employees!=null){
                     allEmployeesList.clear();
                     allEmployeesList.addAll(employees);
                     employeeAdapter.notifyDataSetChanged();
-                    toolbar.setSubtitle(allEmployeesList.size()+ "results found");
+                    toolbar.setSubtitle(allEmployeesList.size() + " employees found");
                 }else {
-                    viewModel.fetchEmployee();
+
                 }
 
+            }
+        });
+
+        viewModel.getErrorLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(MainActivity.this, s.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        viewModel.getIsLoadingLiveData().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean loadingStatus) {
+                if (!loadingStatus) {
+                    progressBar.setVisibility(View.GONE);
+                }
             }
         });
     }
@@ -68,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupToolbar(){
         toolbar = findViewById(R.id.search_toolbar);
         toolbar.setTitle("Employees List");
+        progressBar = findViewById(R.id.progress);
 
     }
 

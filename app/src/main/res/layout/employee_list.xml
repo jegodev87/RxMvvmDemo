@@ -1,9 +1,25 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/off_white">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/off_white_red"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -28,26 +44,18 @@
         </androidx.appcompat.widget.Toolbar>
 
 
-        <View
-            android:background="@color/off_white_red"
-            android:layout_width="match_parent"
-            android:layout_height="1px"/>
-
-
         <FrameLayout
             android:background="@drawable/edtext_background"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:padding="4dp"
+                android:layout_height="wrap_content"
+                android:minHeight="45dp"
                 android:id="@+id/search_employee"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:padding="8dp"
                 android:background="@android:color/transparent"
                 android:gravity="left|center"
                 android:hint="Search Produts"
@@ -56,6 +64,12 @@
 
 
         </FrameLayout>
+
+
+        <View
+            android:background="@color/off_black"
+            android:layout_width="match_parent"
+            android:layout_height="1px" />
 
         <ProgressBar
             android:id="@+id/progress"
@@ -69,34 +83,6 @@
 
 
     </com.google.android.material.appbar.AppBarLayout>
-
-
-    <LinearLayout
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-
-
-
-
-
-
-
-
-
-
-
-    </LinearLayout>
 
 
 

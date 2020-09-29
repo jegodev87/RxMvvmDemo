@@ -1,7 +1,5 @@
 package com.mvvm.boilerplate.dmo.data.model;
 
-import androidx.room.Ignore;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -40,5 +38,14 @@ public class Company implements Serializable {
 
     public void setBs(String bs) {
         this.bs = bs;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "companyName='" + companyName + '\'' +
+                ", catchPhrase='" + catchPhrase + '\'' +
+                ", bs='" + bs + '\'' +
+                '}';
     }
 }

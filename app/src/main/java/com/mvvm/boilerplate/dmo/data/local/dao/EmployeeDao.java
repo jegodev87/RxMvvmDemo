@@ -10,7 +10,6 @@ import com.mvvm.boilerplate.dmo.data.model.Employee;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 @Dao
@@ -23,4 +22,7 @@ public interface EmployeeDao {
 
     @Query("SELECT * FROM employee_details")
     LiveData<List<Employee>> getAllEmployees();
+
+    @Query("SELECT * FROM employee_details")
+    Single<List<Employee>> g();
 }

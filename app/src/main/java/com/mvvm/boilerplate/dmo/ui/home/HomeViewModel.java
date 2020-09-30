@@ -53,7 +53,7 @@ public class HomeViewModel extends AndroidViewModel {
                             @Override
                             public void onError(Throwable e) {
                                 isLoadingLiveData.setValue(false);
-                                errorLiveData.setValue("No network connection availble");
+                                errorLiveData.setValue("No network connection available");
                                 Log.e("Throwable", e.toString());
                             }
                         })

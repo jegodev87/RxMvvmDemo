@@ -4,18 +4,16 @@ import com.mvvm.boilerplate.dmo.data.model.Employee;
 
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 
 public interface ApiService {
 
     @GET("5d565297300000680030a986")
-    Single<List<Employee>> getEmployees();
+    Single<List<Employee>> getEmployeesFromServer();
 
 
-    @GET("5d565297300000680030a986")
-    Observable<List<Employee>> g();
+
 
 
 }

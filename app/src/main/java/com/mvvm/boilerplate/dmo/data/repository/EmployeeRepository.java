@@ -28,10 +28,10 @@ public class EmployeeRepository {
     //if there is no data then calling the api call
     //after get result saving to db
     public Single<List<Employee>> fetchEmployees() {
-        return employeeDao.g()
+        return employeeDao.getAllEmployeesFromDb()
                 .flatMap(employees -> {
                     if (employees.isEmpty()) {
-                        return backend.getEmployees().map(remoteEmployees -> {
+                        return backend.getEmployeesFromServer().map(remoteEmployees -> {
                             employeeDao.insertAllEmployees(remoteEmployees);
                             return remoteEmployees;
                         });

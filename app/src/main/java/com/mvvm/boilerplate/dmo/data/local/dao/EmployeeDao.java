@@ -18,11 +18,9 @@ public interface EmployeeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllEmployees(List<Employee> listOfEmployees);
 
-
-
     @Query("SELECT * FROM employee_details")
     LiveData<List<Employee>> getAllEmployees();
 
     @Query("SELECT * FROM employee_details")
-    Single<List<Employee>> g();
+    Single<List<Employee>> getAllEmployeesFromDb();
 }
